@@ -1,0 +1,13 @@
+alias client="Client"
+alias cont="app.rb"
+alias model="space"
+alias view="listing.erb"
+# the user starts by filling out a form to create a listing,
+# the diagram starts when the user hits 'submit'
+client->cont: "post '/create_listing'"
+cont->model: ".create_listing"
+model->model: "insert new\nspace into\ndatabase"
+model-->cont: "returns info for new space"
+cont->view: "show the listing page"
+view-->cont: "shows the listing page"
+cont-->client: "shows listing page"
