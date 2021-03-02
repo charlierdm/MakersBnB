@@ -17,7 +17,7 @@ class User
     else
       connection = PG.connect(dbname: 'makersbnb')
     end
-    fail "username already taken" if name_exists?(username)
+
     result = connection.exec("INSERT INTO users (username, email, password) VALUES('#{username}', '#{email}', '#{password}') RETURNING *;")
     User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'], password: result[0]['password'])
   end
@@ -33,22 +33,9 @@ class User
     result.map do |user|
       User.new(id: user['id'], username: user['username'], email: user['email'], password: user['password'])
     end
+
   end
 
-  private
-  # def self.name_exists?(name)
-  #   users = User.all
-  #   users.each do |user|
-  #     user['username'] == name ? true : false
-  #   end
-  # end
 
-  def self.name_exists?(username)
-    users = User.all
-    existing_names = []
-    users.map do |user|
-      existing_names << user.username
-    end
-    existing_names.include?(username) ? true : false
-  end
+
 end

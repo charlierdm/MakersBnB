@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require 'pg'
 require './lib/space.rb'
+require './lib/user.rb'
+
 
 class Hotel < Sinatra::Base
 enable :sessions, :method_override
