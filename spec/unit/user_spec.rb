@@ -13,6 +13,21 @@ describe User do
     end
   end
 
-  
+  describe '.all' do
+    it 'returns a list of users' do
+      User.create(username: "test_user", email: "test@example.com", password: "letmein")
+      User.create(username: "test_user2", email: "test2@example.com", password: "letmein")
+
+      users = User.all
+      p users
+      expect(users.length).to eq(2)
+      expect(users[0].username).to eq("test_user")
+      expect(users[1].username).to eq("test_user2")
+      expect(users[0].email).to eq("test@example.com")
+      expect(users[1].email).to eq("test2@example.com")
+
+    end
+  end
+
 
 end
