@@ -18,7 +18,7 @@ enable :sessions, :method_override
 
   post '/create_space' do
     #collect new space info into database
-
+    #Space.create(name, description, user, price)
     redirect '/spaces'
   end
 end
