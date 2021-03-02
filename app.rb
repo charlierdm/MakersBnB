@@ -34,4 +34,25 @@ enable :sessions, :method_override
     Space.create(name: params[:Name], description: params[:Description], user_id: session['user_id'] , price: params[:Price])
     redirect '/spaces'
   end
+
+  get '/user/new' do
+    # link to take user to the registration page user/create_user
+    erb :'user/create_user_form'
+  end
+
+  post '/user/create_user' do
+    newuser = User.create(username: params[:username], email: params[:email], password: params[:password])
+    session[:username] = newuser.username
+    redirect '/user/confirmation'
+  end
+
+  get '/user/confirmation' do
+    # display confirmation of registration
+    @username = session[:username]
+    erb :'user/confirmation'
+  end
+
+
+
+
 end
