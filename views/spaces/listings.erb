@@ -8,6 +8,8 @@
   box-sizing: border-box;
 }
 
+.header{ background: #76aab3;}
+
 .row::after {
   content: "";
   clear: both;
@@ -24,16 +26,42 @@ div.space_container {
   outline: 2px dashed blue;
   margin-left: 10%;
   margin-right: 10%;
-  max-width: 80%; border: none}
+  max-width: 80%;
+  border: none;
+  display: flex;
+  align-items: center;
+  }
+
+.space_info {
+  flex: 1;
+  justify-content: flex-start;
+  padding: 10px;
+  }
+
+.arrow_container {
+  flex: 0 0 100px;
+  justify-content: flex-end;
+  }
 
 /* div.listing {
   outline: 2px dashed blue;
   background-color: #yellow;
   border: none;} */
+.listings_container {
+  background-color: yellow;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+img {
+  object-fit: contain;
+  width: 100px;
+}
+
 
 </style>
 </head>
-<body style="background: #76aab3;">
+<body>
 
 <div class="header">
   <h1> Rspectors Listings </h1>
@@ -41,8 +69,7 @@ div.space_container {
 
 
 <div class="row">
-  <div class="col-1 blank"></div>
-  <div class="col-2 create_container">
+  <div class="create_container">
     <div class="create_header_container">
       <h3>List a Space</h3>
     </div>
@@ -55,22 +82,27 @@ div.space_container {
       </form>
     </div>
   </div>
-
-  <div class="col-3 blank"></div>
   <br>
 </div>
 
 <div class="listings_container">
   <% @all_spaces.each do |space| %>
     <div class="space_container">
-      <div class="space_header">
-        <h4><%= space.name %></h4>
-      </div><br>
-      <div class="space_description">
-        <%= space.description %>
+      <div class="space_info">
+        <div class="space_header">
+          <h4><%= space.name %></h4>
+        </div><br>
+        <div class="space_description">
+          <%= space.description %>
+        </div>
+        <div>
+          <%= space.price %>
+        </div>
       </div>
-      <div>
-        <%= space.price %>
+      <div class="arrow_container">
+        <a href="/spaces/space/<%= space.id %>">
+          <img src="images/right arrow.png">
+        </a>
       </div>
     </div>
   <% end %>
