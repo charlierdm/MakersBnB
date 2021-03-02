@@ -2,3 +2,16 @@
 <form action='/spaces/new'>
   <input type='submit' value='Create Space' >
 </form>
+
+<ul>
+  <% @all_spaces.each do |space| %>
+    <div class="generic">
+      <%= space.name %>
+      <div>
+       <%= space.description %>
+      </div>
+      <%= space.price %>
+    </div>
+    <br>
+  <% end %>
+</ul>

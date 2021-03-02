@@ -6,5 +6,4 @@ feature 'Form page for creating new spaces' do
     expect(page).to have_field "Price per night"
     expect(page).to have_button "Submit New Space"
   end
-
 end
