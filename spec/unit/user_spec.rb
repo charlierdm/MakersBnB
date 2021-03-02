@@ -11,6 +11,14 @@ describe User do
       expect(user.email).to eq("test@example.com")
       expect(user.password).to eq("letmein")
     end
+    it "raises error if username is already taken " do
+      User.create(username: "test_user", email: "test@example.com", password: "letmein")
+      expect { User.create(username: "test_user", email: "test2@example.com", password: "letmein") }.to raise_error("username already taken")
+    end
+    it "raises an error if the email is already taken " do
+      User.create(username: "test_user", email: "test@example.com", password: "letmein"
+      expect { User.create(username: "test_user2", email: "test@example.com", password: "letmein") }.to raise_error("email is already taken")
+    end
   end
 
   describe '.all' do
