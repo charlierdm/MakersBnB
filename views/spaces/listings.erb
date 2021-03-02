@@ -1,17 +1,80 @@
-<h1> Rspectors Listings </h1>
-<form action='/spaces/new'>
-  <input type='submit' value='Create Space' >
-</form>
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+* {
+  font-family: "Helvetica", sans-serif;
+  box-sizing: border-box;
+}
 
-<ul>
-  <% @all_spaces.each do |space| %>
-    <div class="generic">
-      <%= space.name %>
-      <div>
-       <%= space.description %>
-      </div>
-      <%= space.price %>
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.create_container {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center; margin: auto; max-width: 80%; border: none}
+
+div.space_container {
+  background: #f6beff;
+  outline: 2px dashed blue;
+  margin-left: 10%;
+  margin-right: 10%;
+  max-width: 80%; border: none}
+
+/* div.listing {
+  outline: 2px dashed blue;
+  background-color: #yellow;
+  border: none;} */
+
+</style>
+</head>
+<body style="background: #76aab3;">
+
+<div class="header">
+  <h1> Rspectors Listings </h1>
+</div>
+
+
+<div class="row">
+  <div class="col-1 blank"></div>
+  <div class="col-2 create_container">
+    <div class="create_header_container">
+      <h3>List a Space</h3>
     </div>
-    <br>
+    <div class="create_message_container" style="width:100%;background-color:#ffffff;">
+      Add your own listing, and start turning your excess numbers of properties into an unreliable income stream
+    </div>
+    <div class='create_space_container'>
+      <form action='/spaces/new'>
+        <input type='submit' value='Create Space' >
+      </form>
+    </div>
+  </div>
+
+  <div class="col-3 blank"></div>
+  <br>
+</div>
+
+<div class="listings_container">
+  <% @all_spaces.each do |space| %>
+    <div class="space_container">
+      <div class="space_header">
+        <h4><%= space.name %></h4>
+      </div><br>
+      <div class="space_description">
+        <%= space.description %>
+      </div>
+      <div>
+        <%= space.price %>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
+
+</body>
+</html>
