@@ -8,7 +8,17 @@ enable :sessions, :method_override
     erb :index
   end
 
-  get '/listings' do
-    erb :listings
+  get '/spaces' do
+    erb :'spaces/listings'
+  end
+
+  get '/spaces/new' do
+    erb :'spaces/create_space_form'
+  end
+
+  post '/create_space' do
+    #collect new space info into database
+
+    redirect '/spaces'
   end
 end
