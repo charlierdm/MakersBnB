@@ -12,15 +12,6 @@ class Space
     @price = price
   end
 
-  def find(id:)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
-    end
-
-    connection.exec("SELECT * FROM spaces WHERE id = #{id}")
-  end
 
   class << self
 
@@ -35,6 +26,12 @@ class Space
     def create(name:, description:, user_id:, price:)
       connection = make_connection()
       result = connection.exec("INSERT INTO spaces (name, description, user_id, price) VALUES ('#{name}', '#{description}', '#{user_id}', '#{price}') RETURNING id, name, description, user_id, price;")[0]
+      Space.new(id: result['id'], name: result['name'], description: result['description'], user_id: result['user_id'], price: result['price'])
+    end
+
+    def find(id:)
+      connection = make_connection()
+      result = connection.exec("SELECT * FROM spaces WHERE id = #{id};")[0]
       Space.new(id: result['id'], name: result['name'], description: result['description'], user_id: result['user_id'], price: result['price'])
     end
 
