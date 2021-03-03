@@ -1,5 +1,8 @@
 require 'sinatra/base'
 require 'pg'
+require './lib/space.rb'
+require './lib/user.rb'
+
 
 class Hotel < Sinatra::Base
 enable :sessions, :method_override
@@ -19,11 +22,8 @@ enable :sessions, :method_override
 
 
   get '/spaces' do
-    # collect Space.self.all from space.rb (from spaces table in database)
-    # render this in below erb view
-    # don't worry about setting availability just yet.
-    # the developer 'user' can add loads of spaces, and view them all on this page.
-    # setting availability for a space.
+    @all_spaces = Space.all
+    puts @all
     erb :'spaces/listings'
   end
 
@@ -32,9 +32,8 @@ enable :sessions, :method_override
   end
 
   post '/create_space' do
-    # collect new space info into database
-    # Space.create(name: params[], description, user, price)
-    # as part of this, space.self.all, space.self.create need to be made.
+    session['user_id'] = 1234
+    Space.create(name: params[:Name], description: params[:Description], user_id: session['user_id'] , price: params[:Price])
     redirect '/spaces'
   end
 

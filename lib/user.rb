@@ -39,7 +39,6 @@ to create a login method.
     result.map do |user|
       User.new(id: user['id'], username: user['username'], email: user['email'], password: user['password'])
     end
-  end
 
   private
   def self.name_exists?(username)
@@ -59,4 +58,5 @@ to create a login method.
     end
     existing_emails.include?(username) ? true : false
   end
+
 end
