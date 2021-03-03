@@ -23,5 +23,11 @@ describe Space do
     end
   end
 
+  describe '.find' do
+    it 'finds a specific space'
+      
+
+  end
+
 
 end

@@ -37,6 +37,10 @@ enable :sessions, :method_override
     redirect '/spaces'
   end
 
+  get '/spaces/space/:id' do
+    erb :'spaces/space'
+  end
+
   get '/user/new' do
     # link to take user to the registration page user/create_user
     erb :'user/create_user_form'
