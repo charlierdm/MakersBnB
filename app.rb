@@ -24,17 +24,19 @@ enable :sessions, :method_override
 
   get '/spaces' do
     @all_spaces = Space.all
-    puts @all
+    @user_id = session[:user_id]
+    puts "spaces session = #{session[:user_id]}"
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
+    @user_id = session[:user_id]
+    puts "user_ID: ", @user_id
     erb :'spaces/create_space_form'
   end
 
   post '/create_space' do
-    session['user_id'] = 1234
-    Space.create(name: params[:Name], description: params[:Description], user_id: session['user_id'] , price: params[:Price])
+    Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price])
     redirect '/spaces'
   end
 
@@ -68,8 +70,8 @@ enable :sessions, :method_override
   post '/user/login_attempt' do
     user = User.login(email: params[:email], password: params[:password])
     if user[0] == true
-      p "login attempt visibility"
-      p user
+      # p "login attempt visibility"
+      # p user
       session[:user_id] = user[1].id
       session[:username] = user[1].username
       redirect '/'

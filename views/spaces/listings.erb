@@ -88,8 +88,15 @@ body { background: #f5e5e0;}
       Add your own listing, and start turning your excess numbers of properties into an unreliable income stream
     </div>
     <div class='create_space_container'>
+      <% if @user_id == nil %>
+        <span>Sign in or create account to list your space</span>
+      <% end %>
       <form action='/spaces/new'>
-        <input type='submit' value='Create Space' >
+        <% if @user_id == nil %>
+            <input type='submit' value='Create Space' disabled>
+        <% else %>
+          <input type='submit' value='Create Space'>
+        <% end %>
       </form>
     </div>
   </div>
