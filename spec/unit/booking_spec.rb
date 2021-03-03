@@ -13,5 +13,12 @@ describe Booking do
     expect(booking.available).to eq("1")
   end
 
+   it 'confirms a booking request' #do
+   #Test needs a specific booking id to work -> unsure how to do that at the moment
+  #
+  #   fake_booking.confirm(id: "299")
+  #   expect(fake_booking.booking_status).to eq("confirmed")
+  #   expect(fake_booking.available).to eq("0")
+  # end
 
 end

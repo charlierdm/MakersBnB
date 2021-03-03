@@ -2,9 +2,10 @@ require 'pg'
 
 class Booking
 
-  attr_reader :space_id, :user_id, :date, :booking_status, :available
+  attr_reader :id, :space_id, :user_id, :date, :booking_status, :available
 
-  def initialize(space_id:, user_id:, date:, booking_status:, available:)
+  def initialize(id:, space_id:, user_id:, date:, booking_status:, available:)
+    @id = id
     @space_id = space_id
     @user_id = user_id
     @date = date
@@ -17,9 +18,13 @@ class << self
   def create(space_id:, user_id:, date:, booking_status:, available:)
     connection = make_connection()
     result = connection.exec("INSERT INTO bookings (space_id, user_id, date, booking_status, available) VALUES('#{space_id}', '#{user_id}', '#{date}', '#{booking_status}', '#{available}') RETURNING *;")
-    Booking.new(space_id: result[0]['space_id'], user_id: result[0]['user_id'], date: result[0]['date'], booking_status: result[0]['booking_status'], available: result[0]['available'])
+    Booking.new(id: result[0]['id'], space_id: result[0]['space_id'], user_id: result[0]['user_id'], date: result[0]['date'], booking_status: result[0]['booking_status'], available: result[0]['available'])
   end
 
+  def confirm(id:)
+    connection = make_connection()
+    connection.exec("UPDATE bookings SET booking_status = 'confirmed', availabe = '0' WHERE id == #{id}")
+  end
 
   private
 
