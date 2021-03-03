@@ -39,5 +39,40 @@ describe User do
     end
   end
 
+  describe '.login' do
+    context 'is successful' do
+      before(:each) do
+        User.create(username: "test_user2", email: "test2@example.com", password: "letmein")
+      end
+
+      it 'returns user_id and username' do
+        user = User.login(email: "test2@example.com", password: "letmein")
+        expect(user.first).to eq true
+        expect(user[1].username).to eq "test_user2"
+        # expect(user[1].id).to eq 1
+      end
+    end
+
+    context 'is unsuccessful' do
+      before(:each) do
+        User.create(username: "test_user2", email: "test2@example.com", password: "letmein")
+      end
+
+      it 'because email is wrong' do
+        user = User.login(email: "test2electric_boogaloo@example.com", password: "letmein")
+        expect(user.first).to eq false
+        expect(user[1]).to include "email"
+        expect(user[1]).not_to include "password"
+      end
+
+      it 'because password is wrong' do
+        user = User.login(email: "test2@example.com", password: "letmein#vamp_lyfe")
+        expect(user.first).to eq false
+        expect(user[1]).not_to include "email"
+        expect(user[1]).to include "password"
+      end
+
+    end
+  end
 
 end

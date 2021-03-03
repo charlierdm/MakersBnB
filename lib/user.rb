@@ -16,47 +16,66 @@ to create a login method.
     @password = password
   end
 
-  def self.create(username:, email:, password:)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
-    end
-    return [false, "username already taken"] if name_exists?(username)
-    return [false, "email already taken"] if email_exists?(email)
-    result = connection.exec("INSERT INTO users (username, email, password) VALUES('#{username}', '#{email}', '#{password}') RETURNING *;")
-    [true, User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'], password: result[0]['password'])]
-  end
+  class << self
 
-  def self.all
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
-    else
-      connection = PG.connect(dbname: 'makersbnb')
+    def create(username:, email:, password:)
+      connection = makeconnection()
+      return [false, "username already taken"] if name_exists?(username)
+      return [false, "email already taken"] if email_exists?(email)
+      result = connection.exec("INSERT INTO users (username, email, password) VALUES('#{username}', '#{email}', '#{password}') RETURNING *;")
+      [true, User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'], password: result[0]['password'])]
     end
 
-    result = connection.exec("SELECT * FROM users;")
-    result.map do |user|
-      User.new(id: user['id'], username: user['username'], email: user['email'], password: user['password'])
-    end
-  end
+    def all
+      connection = makeconnection()
 
-  private
-  def self.name_exists?(username)
-    users = User.all
-    existing_names = []
-    users.map do |user|
-      existing_names << user.username
+      result = connection.exec("SELECT * FROM users;")
+      result.map do |user|
+        User.new(id: user['id'], username: user['username'], email: user['email'], password: user['password'])
+      end
     end
-    existing_names.include?(username) ? true : false
-  end
 
-  def self.email_exists?(username)
-    users = User.all
-    existing_emails = []
-    users.map do |user|
-      existing_emails << user.email
+    def login(email:, password:)
+      return [false, "wrong email address"] if not email_exists?(email)
+      return [false, "wrong password"] if not password_correct?(email: email, password: password)
+      connection = makeconnection()
+      result = connection.exec("SELECT * FROM users WHERE email = '#{email}';")
+      [true, User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'], password: result[0]['password'])]
     end
-    existing_emails.include?(username) ? true : false
+
+    private
+
+    def password_correct?(email:, password:)
+      connection = makeconnection()
+      result = connection.exec("SELECT * FROM users WHERE email='#{email}';")
+      # return BCrypt::Password.new(result[0]['password']) == password
+      result[0]['password'] == password
+    end
+
+    def name_exists?(username)
+      users = User.all
+      existing_names = []
+      users.map do |user|
+        existing_names << user.username
+      end
+      existing_names.include?(username) ? true : false
+    end
+
+    def email_exists?(username)
+      users = User.all
+      existing_emails = []
+      users.map do |user|
+        existing_emails << user.email
+      end
+      existing_emails.include?(username) ? true : false
+    end
+
+    def makeconnection
+      if ENV['ENVIRONMENT'] == 'test'
+        connection = PG.connect(dbname: 'makersbnb_test')
+      else
+        connection = PG.connect(dbname: 'makersbnb')
+      end
+    end
   end
 end
