@@ -8,14 +8,17 @@
 
 <body>
 
-  <label for="start">Start date:</label>
-
-  <input type="date" id="start" name="trip-start"
-         value="2018-07-22"
-         min="2018-01-01" max="2018-12-31">
 
 
+<form action='/bookings/create_booking' method='post'>
 
+  <label for="start">Please select the date</label>
+  <input type="date" id="start" name="choose_date"
+         value="2021-01-01"
+         min="2021-01-01" max="2021-12-31">
+  <input type="submit" value="Book Space">
+
+</form>
 
 
 </body>

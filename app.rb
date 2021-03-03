@@ -43,6 +43,15 @@ enable :sessions, :method_override
     erb :'spaces/space'
   end
 
+  post '/bookings/create_booking' do
+    #booking class to go here
+    redirect '/bookings/confirmation'
+  end
+
+  get '/bookings/confirmation' do
+    erb :'bookings/confirmation'
+  end
+
   get '/user/new' do
     # link to take user to the registration page user/create_user
     erb :'user/create_user_form'
