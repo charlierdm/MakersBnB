@@ -5,7 +5,7 @@ class User
 notes from 02/03/21. have just implemented name_exists?
 and email_exists? methods, these prevent users from registering
 with values that already exist. Next thing to do is use these
-to create a login method.  
+to create a login method.
 =end
   attr_reader :id, :username, :email, :password
 
@@ -39,6 +39,7 @@ to create a login method.
     result.map do |user|
       User.new(id: user['id'], username: user['username'], email: user['email'], password: user['password'])
     end
+  end
 
   private
   def self.name_exists?(username)
