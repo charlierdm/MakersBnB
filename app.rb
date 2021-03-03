@@ -8,6 +8,8 @@ class Hotel < Sinatra::Base
 enable :sessions, :method_override
 
   get '/' do
+    @user_id = session[:user_id]
+    @username = session[:username]
     erb :index
   end
 
@@ -19,7 +21,6 @@ enable :sessions, :method_override
 
   # future work - how to relate space to owner (user_id).
   # requesting to book, and confirmation, need to wait until spaces and users are linked.
-
 
   get '/spaces' do
     @all_spaces = Space.all
@@ -59,7 +60,28 @@ enable :sessions, :method_override
     erb :'user/confirmation'
   end
 
+  get '/user/login' do
+    @params = params
+    erb :'user/login'
+  end
 
+  post '/user/login_attempt' do
+    user = User.login(email: params[:email], password: params[:password])
+    if user[0] == true
+      p "login attempt visibility"
+      p user
+      session[:user_id] = user[1].id
+      session[:username] = user[1].username
+      redirect '/'
+    else
+      redirect "user/login?error=#{user[1]}"
+    end
+  end
 
+  get '/user/logout' do
+    session[:user_id] = nil
+    session[:username] = nil
+    redirect '/'
+  end
 
 end

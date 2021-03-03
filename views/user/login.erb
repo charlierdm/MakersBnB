@@ -1,0 +1,12 @@
+<head>
+  <% if @params["error"] != nil %>
+    <%= @params["error"] %>
+  <% end %>
+  
+
+  <h1><form action="/user/login_attempt" method="post">
+    <input type="email" name="email" placeholder='Enter Email Address'>
+    <input type="password" name="password" placeholder='Password'>
+    <input type="submit" value="Login">
+  </form></h1>
+</head>

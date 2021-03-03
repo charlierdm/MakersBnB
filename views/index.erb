@@ -1,4 +1,16 @@
 <h1> Welcome to Hotel Rspectors </h1>
+<% if @user_id != nil %>
+Welcome: <%= @username %>
+<% end %>
+
+<form action="/user/logout" method="get">
+  <input type="submit" value="Logout">
+</form>
+
+
+<form action="/user/login" method="get">
+  <input type="submit" value="Login">
+</form>
 
 <form action='/spaces' method="get">
   <input type='submit' value='Spaces' >

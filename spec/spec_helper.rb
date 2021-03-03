@@ -1,6 +1,8 @@
 require_relative './setup_test_database'
 require_relative './web_helpers.rb'
 require_relative 'unit/unit_helpers'
+require 'user'
+require 'space'
 
 require 'capybara/rspec'
 require 'pg'
