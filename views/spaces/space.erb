@@ -9,7 +9,14 @@
 <body>
 
 Create Booking for <%= @space.name %>
-<br>
+
+<br><br>
+
+<%= @space.description %>
+<br><br>
+£<%= @space.price %>
+<br><br>
+
 
 <form action='/bookings/create_booking' method='post'>
 
