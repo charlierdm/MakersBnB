@@ -4,21 +4,22 @@ describe User do
 
   describe '.create' do
     it 'creates a new user' do
-      user = User.create(username: "test_user", email: "test@example.com", password: "letmein")
+      user = User.create(username: "test_user", email: "test@example.com", password: "letmein")[1]
 
       expect(user).to be_a(User)
       expect(user.username).to eq("test_user")
       expect(user.email).to eq("test@example.com")
       expect(user.password).to eq("letmein")
     end
+
     it "raises error if username is already taken " do
       User.create(username: "test_user", email: "test@example.com", password: "letmein")
-      expect { User.create(username: "test_user", email: "test2@example.com", password: "letmein") }.to raise_error("username already taken")
+      expect(User.create(username: "test_user", email: "test2@example.com", password: "letmein")).to eq([false, "username already taken"])
     end
 
     it "raises an error if the email is already taken " do
       User.create(username: "test_user", email: "test@example.com", password: "letmein")
-      expect { User.create(username: "test_user2", email: "test@example.com", password: "letmein") }.to raise_error("email already taken")
+      expect(User.create(username: "test_user2", email: "test@example.com", password: "letmein")).to eq([false, "email already taken"])
     end
   end
 

@@ -38,14 +38,19 @@ enable :sessions, :method_override
   end
 
   get '/user/new' do
+    @params = params
     # link to take user to the registration page user/create_user
     erb :'user/create_user_form'
   end
 
   post '/user/create_user' do
     newuser = User.create(username: params[:username], email: params[:email], password: params[:password])
-    session[:username] = newuser.username
-    redirect '/user/confirmation'
+    if newuser[0] == true
+      session[:username] = newuser[1].username
+      redirect '/user/confirmation'
+    else
+      redirect "user/new?error=#{newuser[1]}"
+    end
   end
 
   get '/user/confirmation' do
