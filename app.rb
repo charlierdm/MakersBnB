@@ -38,6 +38,8 @@ enable :sessions, :method_override
   end
 
   get '/spaces/space/:id' do
+    space = Space.all
+    @space = space.find(id: params[:id])
     erb :'spaces/space'
   end
 
