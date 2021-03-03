@@ -13,17 +13,21 @@ class Booking
     @available = available
   end
 
+  def confirm(id:)
+    if ENV['ENVIRONMENT'] == 'test'
+      connection = PG.connect(dbname: 'makersbnb_test')
+    else
+      connection = PG.connect(dbname: 'makersbnb')
+    end
+    connection.exec("UPDATE bookings SET booking_status='confirmed', available='0' WHERE id = #{id};")
+  end
+
 class << self
 
   def create(space_id:, user_id:, date:, booking_status:, available:)
     connection = make_connection()
     result = connection.exec("INSERT INTO bookings (space_id, user_id, date, booking_status, available) VALUES('#{space_id}', '#{user_id}', '#{date}', '#{booking_status}', '#{available}') RETURNING *;")
     Booking.new(id: result[0]['id'], space_id: result[0]['space_id'], user_id: result[0]['user_id'], date: result[0]['date'], booking_status: result[0]['booking_status'], available: result[0]['available'])
-  end
-
-  def confirm(id:)
-    connection = make_connection()
-    connection.exec("UPDATE bookings SET booking_status = 'confirmed', availabe = '0' WHERE id == #{id}")
   end
 
   private
