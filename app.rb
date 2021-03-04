@@ -110,6 +110,7 @@ enable :sessions, :method_override
     @requests_made = Booking.find_requests_made(user_id: session[:user_id])
     @requests_received = Booking.find_request_received(user_id: session[:user_id])
     p "requests made: #{@requests_made}"
+    p "requests_recived #{@requests_received}"
     erb :'user/requests'
   end
 end

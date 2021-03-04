@@ -10,7 +10,7 @@ feature "Requests Page:" do
     fill_in :password, with: @user[1].password
     click_button ('Login')
     visit '/user/requests'
-    save_and_open_page
+
     expect(page).to have_content("#{@space.name}")
     expect(page).to have_content("#{@booking.booking_status}")
   end
@@ -28,13 +28,13 @@ feature "Requests Page:" do
     fill_in :password, with: @user_2[1].password
     click_button ('Login')
     visit '/user/requests'
-    save_and_open_page
+
     expect(page).to have_content("#{@space.name}")
     expect(page).to have_content("#{@booking.booking_status}")
   end
 
   scenario "user_1 books a request, user_2 books user_1s space, user_1 sees both on their Requests page"
-  
+
 end
 
 def create_users(i=3)
@@ -43,4 +43,3 @@ def create_users(i=3)
     @space = Space.create(name: "test_name_#{i}", description: 'test_description', user_id: @user[1].id, price: 100 )
   end
 end
-  
