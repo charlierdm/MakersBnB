@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="<%= url('/styles/site_css.css') %>" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+<div class="header">
+  <div class="header_box">
+    <h2> Login or Create Account to List and Book Spaces! </h2>
+  </div>
+  <div class="links_box">
+    <a href="/user/new">Create Account</a>
+    |
+    <a href="/user/login">Login</a>
+  </div>
+</div>
+
+<%= yield %>
+
+</body>
+</html>
