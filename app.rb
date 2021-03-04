@@ -38,7 +38,7 @@ enable :sessions, :method_override
   end
 
   post '/create_space' do
-    Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price], available_from: params[:From], available_to: params[:To])
+    Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price], available_from: params[:available_from], available_to: params[:available_to])
     redirect '/spaces'
   end
 
