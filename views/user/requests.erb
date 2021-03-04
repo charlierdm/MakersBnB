@@ -23,7 +23,21 @@
 </div>
 
 <div class="listings_container main_body">
-  <% @all_bookings.each do |booking| %>
+  <% @requests_made.each do |booking| %>
+    <div class="space_container item_container">
+      <div class="space_info">
+        <div class="space_header">
+          <b><%= booking.booking_status %></b>
+        </div>
+        <div class="space_description">
+          <p><%= booking.date %></p>
+        </div>
+
+      </div>
+    </div>
+  <% end %>
+
+  <% @requests_received.each do |booking| %>
     <div class="space_container item_container">
       <div class="space_info">
         <div class="space_header">
@@ -37,6 +51,8 @@
     </div>
   <% end %>
 </div>
+
+
 
 </body>
 </html>
