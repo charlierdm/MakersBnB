@@ -45,6 +45,7 @@ enable :sessions, :method_override
   get '/spaces/space/:id' do
     @space = Space.find(id: params[:id])
     session['id'] = params[:id]
+    @user_id = session[:user_id]
     erb :'spaces/space'
   end
 

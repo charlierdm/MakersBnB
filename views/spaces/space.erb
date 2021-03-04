@@ -15,18 +15,29 @@ Create Booking for <%= @space.name %>
 <%= @space.description %>
 <br><br>
 £<%= @space.price %>
+
 <br><br>
 
+<% if @user_id == nil %>
+<h3><em>Please login to book a space.</em></h3>
+<% end %>
 
 <form action='/bookings/create_booking' method='post'>
 
   <label for="start">Please select the date</label>
   <input type="date" id="start" name="choose_date"
-         value="2021-01-01"
-         min="2021-01-01" max="2021-12-31">
-  <input type="submit" value="Book Space">
+         value="<%= Date.today %>"
+         min=<%= Date.today %> max="2021-12-31">
+   <% if @user_id != nil %>
+     <input type="submit" value="Book Space">
+   <% else %>
+     <input type="submit" value="Book Space" disabled>
+   <% end %>
 
 </form>
+
+
+
 
 
 </body>
