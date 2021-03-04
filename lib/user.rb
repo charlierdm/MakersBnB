@@ -28,7 +28,6 @@ to create a login method.
 
     def all
       connection = makeconnection()
-
       result = connection.exec("SELECT * FROM users;")
       result.map do |user|
         User.new(id: user['id'], username: user['username'], email: user['email'], password: user['password'])
@@ -42,7 +41,6 @@ to create a login method.
       result = connection.exec("SELECT * FROM users WHERE email = '#{email}';")
       [true, User.new(id: result[0]['id'], username: result[0]['username'], email: result[0]['email'], password: result[0]['password'])]
     end
-
 
     private
 

@@ -104,4 +104,10 @@ enable :sessions, :method_override
     redirect '/'
   end
 
+  get '/user/requests' do
+    @user_id = session[:user_id]
+    @user_name = session[:username]
+    @all_bookings = Booking.find_requests_made(user_id: session[:user_id])
+    erb :'user/requests'
+  end
 end
