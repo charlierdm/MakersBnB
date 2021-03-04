@@ -26,8 +26,8 @@ Create Booking for <%= @space.name %>
 
   <label for="start">Please select the date</label>
   <input type="date" id="start" name="choose_date"
-         value="<%= Date.today %>"
-         min=<%= Date.today %> max="2021-12-31">
+         value="<%= @space.available_from %>"
+         min=<%= @space.available_from %> max=<%= @space.available_to %>>
    <% if @user_id != nil %>
      <input type="submit" value="Book Space">
    <% else %>
@@ -35,9 +35,6 @@ Create Booking for <%= @space.name %>
    <% end %>
 
 </form>
-
-
-
 
 
 </body>
