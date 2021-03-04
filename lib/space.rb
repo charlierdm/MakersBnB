@@ -1,5 +1,6 @@
 require 'pg'
 
+
 class Space
 
   attr_reader :id, :name, :description, :user_id, :price, :available_from, :available_to
@@ -28,12 +29,14 @@ class Space
     def create(name:, description:, user_id:, price:, available_from:, available_to:)
       connection = make_connection()
       result = connection.exec("INSERT INTO spaces (name, description, user_id, price, available_from, available_to) VALUES ('#{name}', '#{description}', '#{user_id}', '#{price}', '#{available_from}', '#{available_to}') RETURNING id, name, description, user_id, price, available_from, available_to;")[0]
+
       Space.new(id: result['id'], name: result['name'], description: result['description'], user_id: result['user_id'], price: result['price'], available_from: result['available_from'], available_to: result['available_to'])
     end
 
     def find(id:)
       connection = make_connection()
       result = connection.exec("SELECT * FROM spaces WHERE id = #{id};")[0]
+      connection.close()
       Space.new(id: result['id'], name: result['name'], description: result['description'], user_id: result['user_id'], price: result['price'], available_from: result['available_from'], available_to: result['available_to'])
     end
 

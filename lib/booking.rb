@@ -49,6 +49,8 @@ class << self
     results = connection.exec("SELECT bookings.id, bookings.user_id, bookings.date, bookings.space_id, bookings.booking_status, bookings.available FROM bookings INNER JOIN spaces ON bookings.space_id = spaces.id WHERE spaces.user_id = '#{user_id}';")
     results.map do |booking|
       Booking.new(id: booking['id'], space_id: booking['space_id'], user_id: booking['user_id'], date: booking['date'], booking_status: booking['booking_status'], available: booking['available'])
+    end
+  end
 
   def find_unavailable(space_id:)
     connection = make_connection()

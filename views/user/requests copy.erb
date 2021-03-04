@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="<%= url('/styles/site_css.css') %>" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
 <div class="header">
   <h1> Rspectors Booking Requests </h1>
 </div>
@@ -19,18 +27,16 @@
     <div class="item_container">
       <h2>Spaces I'm trying to book</h2>
     </div>
-    <% if not @requests_made.empty? %>
+    <% if @requests_made != nil %>
       <% @requests_made.each do |booking| %>
         <div class="space_container item_container">
           <div class="space_info">
             <div class="space_header">
-              <b><%= Space.find(id: booking.space_id).name %></b>
+              <b><%= booking.booking_status %></b>
             </div>
             <div class="space_description">
               <p><%= booking.date %></p>
             </div>
-            <div class="status_container">
-            <span>Status: <%= booking.booking_status %> </span>
           </div>
         </div>
       <% end %>
@@ -50,13 +56,10 @@
         <div class="space_container item_container">
           <div class="space_info">
             <div class="space_header">
-              <b><%= Space.find(id: booking.space_id).name %></b>
+              <b><%= booking.booking_status %></b>
             </div>
             <div class="space_description">
               <p><%= booking.date %></p>
-            </div>
-            <div class="status_container">
-              <span>Status:<%= booking.booking_status %> </span>
             </div>
           </div>
         </div>
@@ -68,3 +71,6 @@
     <% end %>
   </div>
 </div>
+
+</body>
+</html>
