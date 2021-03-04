@@ -14,8 +14,10 @@ body { background: #f5e5e0;}
 .page_info_container {
   margin-left: 10%;
   margin-right: 10%;
+  margin-bottom: 20px;
+  margin-top: 20px;
   outline: 2px solid;
-  text-align: center; margin: auto; max-width: 80%; border: none}
+  text-align: center;  max-width: 80%; border: none}
 
 .main_body {
   background-color: #b400ff;
@@ -64,5 +66,20 @@ body { background: #f5e5e0;}
       justify-content: flex-end;
       }
 
+/* create space form css */
+  .listing_form_container {flex-direction: column; padding-top: 20px}
 
+  .form_description{
+    width: 75%;
+    box-sizing: content-box;
+    margin: 0;
+  }
 
+  .form_item{
+    padding-bottom: 20px;
+  }
+  .description_label{ width: 5%;}
+  .description_input{max-width: 100%; resize:vertical; }
+  .submit_CreateListing{ align-items: center;}
+  input{margin-top:3px}
+  .CreateListing_form{position: relative;}

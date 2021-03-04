@@ -31,7 +31,8 @@ enable :sessions, :method_override
 
   get '/spaces/new' do
     @user_id = session[:user_id]
-    puts "user_ID: ", @user_id
+    @user_id == nil ? @disabled = "disabled" : @disabled = nil
+    # puts "user_ID: ", @user_id
     erb :'spaces/create_space_form'
   end
 
