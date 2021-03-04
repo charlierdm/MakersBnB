@@ -47,6 +47,23 @@
           £<input type="text" name="Price" placeholder="Price per night">
         </div>
 
+        <div class="form_item">
+          <label for="available_from">Available From</label>
+          <br>
+          <input type="date" name="available_from"
+            value="<%= Date.today %>"
+             min=<%= Date.today %> max="2021-12-31">
+        </div>
+
+        <div class="form_item">
+          <label for="available_to">Available To</label>
+          <br>
+          <input type="date" name="available_to"
+            value="<%= Date.today %>"
+             min=<%= Date.today %> max="2021-12-31">
+        </div>
+
+
         <div class="form_item submit_CreateListing">
           <% if @user_id != nil %>
             <input type="submit" value="Submit New Space">
