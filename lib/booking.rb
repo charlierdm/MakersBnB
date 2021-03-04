@@ -32,12 +32,8 @@ class << self
 
   def find_requests_made(user_id:)
     connection = make_connection()
-    p"find visibility"
-
     result = connection.exec("SELECT * FROM bookings WHERE user_id='#{user_id}' ;")
-    p result
     result.map do |booking|
-      p booking
       Booking.new(id: booking['id'], space_id: booking['space_id'], user_id: booking['user_id'], date: booking['date'], booking_status: booking['booking_status'], available: booking['available'])
     end
   end
