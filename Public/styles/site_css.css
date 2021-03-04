@@ -9,8 +9,27 @@
 
 body { background: #f5e5e0;}
 
-.header{ background: #76aab3;}
+/* header css */
+  .header{
+    background: #76aab3;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin:0;
+    padding-inline: 10px; /* i.e. horizontal padding */
+  }
 
+  .header_box{
+    flex-shrink: 1;
+  }
+
+  .links_box{
+    flex-grow: 0;
+    margin-top:auto;
+    margin-bottom: auto;
+  }
+
+  /* page css */
 .page_info_container {
   margin-left: 10%;
   margin-right: 10%;
