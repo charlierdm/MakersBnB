@@ -43,18 +43,10 @@ class << self
 
   def find_request_received(user_id:)
     connection = make_connection()
-    space_ids = connection.exec("SELECT id FROM spaces WHERE user_id = #{user_id.to_i};")
-    p 'find requests received!!!!!!!!!!!'
-    p space_ids
-    results = space_ids.map do |id|
-      p id
-      connection.exec("SELECT * FROM bookings WHERE space_id = '#{id}';")
-    end
-    p 'results from swl query!!!!!!!!!!!!!!!!!!!'
-    p results
-    return [] if results.nil?
+
+    results = connection.exec("SELECT bookings.id, bookings.user_id, bookings.date, bookings.space_id, bookings.booking_status, bookings.available FROM bookings INNER JOIN spaces ON bookings.space_id = spaces.id WHERE spaces.user_id = '#{user_id}';")
     results.map do |booking|
-      Booking.new(id: booking[0]['id'], space_id: booking[0]['space_id'], user_id: booking[0]['user_id'], date: booking[0]['date'], booking_status: booking[0]['booking_status'], available: booking[0]['available'])
+      Booking.new(id: booking['id'], space_id: booking['space_id'], user_id: booking['user_id'], date: booking['date'], booking_status: booking['booking_status'], available: booking['available'])
     end
   end
 
