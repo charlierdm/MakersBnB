@@ -6,6 +6,7 @@
 </head>
 <body>
 
+<% if @username == nil %>
 <div class="header">
   <div class="header_box">
     <h2> Login or Create Account to List and Book Spaces! </h2>
@@ -16,6 +17,20 @@
     <a href="/user/login">Login</a>
   </div>
 </div>
+<% else %>
+<div class="header">
+  <div class="header_box">
+    <h2> Welcome Back, <%= @username %> </h2>
+  </div>
+  <div class="links_box">
+    <a href="/spaces">Spaces</a>
+    |
+    <a href="/user/requests">Requests</a>
+    |
+    <a href="/user/logout">Logout</a>
+  </div>
+</div>
+<% end %>
 
 <%= yield %>
 

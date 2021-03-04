@@ -7,9 +7,14 @@ require './lib/user.rb'
 class Hotel < Sinatra::Base
 enable :sessions, :method_override
 
-  get '/' do
-    @user_id = session[:user_id]
+  before do
     @username = session[:username]
+    @user_id = session[:user_id]
+  end
+
+  get '/' do
+    # @user_id = session[:user_id]
+    # @username = session[:username]
     erb :index
   end
 
@@ -24,13 +29,13 @@ enable :sessions, :method_override
 
   get '/spaces' do
     @all_spaces = Space.all
-    @user_id = session[:user_id]
+    # @user_id = session[:user_id]
     puts "spaces session = #{session[:user_id]}"
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
-    @user_id = session[:user_id]
+    # @user_id = session[:user_id]
     @user_id == nil ? @disabled = "disabled" : @disabled = nil
     # puts "user_ID: ", @user_id
     erb :'spaces/create_space_form'
@@ -59,7 +64,7 @@ enable :sessions, :method_override
 
   get '/user/confirmation' do
     # display confirmation of registration
-    @username = session[:username]
+    # @username = session[:username]
     erb :'user/confirmation'
   end
 
