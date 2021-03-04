@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="<%= url('/styles/site_css.css') %>" rel="stylesheet" type="text/css" />
-</head>
-<body>
 
-<div class="header">
+<div class="header"> <%# /* fate of this TBD */ %>
   <h1> Create a New Rspectors Listing </h1>
 </div>
 
@@ -56,9 +49,9 @@
 
         <div class="form_item submit_CreateListing">
           <% if @user_id != nil %>
-            <input type="submit" value="Submit New Space" disabled>
-          <% else %>
             <input type="submit" value="Submit New Space">
+          <% else %>
+            <input type="submit" value="Submit New Space" disabled>
           <% end %>
         </div>
       </form>
