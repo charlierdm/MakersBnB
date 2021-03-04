@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'pg'
 require './lib/space.rb'
 require './lib/user.rb'
+require './lib/booking.rb'
 
 
 class Hotel < Sinatra::Base
@@ -39,6 +40,22 @@ enable :sessions, :method_override
   post '/create_space' do
     Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price])
     redirect '/spaces'
+  end
+
+  get '/spaces/space/:id' do
+    @space = Space.find(id: params[:id])
+    session['id'] = params[:id]
+    erb :'spaces/space'
+  end
+
+  post '/bookings/create_booking' do
+    booking = Booking.create(space_id: session['id'], user_id: session['user_id'], date: params[:choose_date], booking_status: "pending", available: "1")
+    p booking
+    redirect '/bookings/confirmation'
+  end
+
+  get '/bookings/confirmation' do
+    erb :'bookings/confirmation'
   end
 
   get '/user/new' do
