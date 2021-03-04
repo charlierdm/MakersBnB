@@ -10,9 +10,51 @@ feature 'user wants to register' do
     fill_in :email, with: "test@example.com"
     fill_in :password, with: 'letmein'
     click_button('Register')
+    
     expect(page).to have_content "Thanks for registering with Hotel Rspectors, test_username"
     expect(page).to have_button 'Back to homepage'
   end
+
+  scenario 'username already taken' do
+    #user registers
+    visit('user/new')
+    fill_in :username, with: "test_username"
+    fill_in :email, with: "test@example.com"
+    fill_in :password, with: 'letmein'
+    click_button('Register')
+    click_button('Back to homepage')
+    #user tries to register with same username
+    visit('user/new')
+    
+    fill_in :username, with: "test_username"
+    fill_in :email, with: "test2@example.com"
+    fill_in :password, with: 'letmein'
+    click_button('Register')
+    
+    expect(page).not_to have_content 'RuntimeError'
+    expect(page).to have_content 'username already taken'
+  end
+
+  scenario 'email already taken' do
+    #user registers
+    visit('user/new')
+    fill_in :username, with: "test_username"
+    fill_in :email, with: "test@example.com"
+    fill_in :password, with: 'letmein'
+    click_button('Register')
+    click_button('Back to homepage')
+    #user tries to register with same username
+    visit('user/new')
+    
+    fill_in :username, with: "test_username2"
+    fill_in :email, with: "test@example.com"
+    fill_in :password, with: 'letmein'
+    click_button('Register')
+    
+    expect(page).not_to have_content 'RuntimeError'
+    expect(page).to have_content 'email already taken'
+  end
+
 end
 
 feature 'Form page for creating new user' do

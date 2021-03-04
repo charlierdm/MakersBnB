@@ -2,75 +2,7 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-* {
-  font-family: "Helvetica", sans-serif;
-  box-sizing: border-box;
-}
-body { background: #f5e5e0;}
-
-.header{ background: #76aab3;}
-
-/* note: i've given everything below an extra indentation,
-  this allows you to collapse everything between the comments */
-/* create css */
-  .create_container {
-    margin-left: 10%;
-    margin-right: 10%;
-    outline: 2px solid;
-    text-align: center; margin: auto; max-width: 80%; border: none}
-
-/* space listings css */
-
-  .listings_container {
-    background-color: #b400ff;
-    padding-top: 20px;
-    padding-bottom: 10px;
-  }
-  
-  div.space_container {
-    background: #f6beff;
-    outline: 2px dashed blue;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-bottom: 20px;
-    max-width: 80%;
-    border: none;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    }
-
-  /* space_container contents */
-    .space_info {
-      flex: 1;
-      /* justify-content: flex-start; */
-      padding: 10px;
-      /* padding-bottom: 3px; */
-      min-height: 115px;  // 5 pixels more than the arrow button
-      /* make this a flexbox too */
-      display: flex;
-      flex-direction: column;
-      }
-
-      /* .space_header { padding-bottom: 5px;} */
-      .space_description { flex-grow: 1; padding-left: 5px;}
-      .price { flex-grow: 0; position: relative; bottom: -10px;}
-
-    /* arrow button */
-      img {
-        object-fit: contain;
-        height: 100px;
-      }
-
-      .arrow_container {
-        flex: 0 0 100px;
-        justify-content: flex-end;
-        }
-
-
-
-</style>
+<link href="<%= url('/styles/site_css.css') %>" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
@@ -80,25 +12,31 @@ body { background: #f5e5e0;}
 
 
 <div class="row">
-  <div class="create_container">
-    <div class="create_header_container">
+  <div class="create_container page_info_container">
+    <div class="page_info_header_container">
       <h3>List a Space</h3>
     </div>
-    <div class="create_message_container">
+    <div class="page_info_message_container">
       Add your own listing, and start turning your excess numbers of properties into an unreliable income stream
     </div>
     <div class='create_space_container'>
+      <% if @user_id == nil %>
+        <span>Sign in or create account to list your space</span>
+      <% end %>
       <form action='/spaces/new'>
-        <input type='submit' value='Create Space' >
+        <% if @user_id == nil %>
+            <input type='submit' value='Create Space' disabled>
+        <% else %>
+          <input type='submit' value='Create Space'>
+        <% end %>
       </form>
     </div>
   </div>
-  <br>
 </div>
 
-<div class="listings_container">
+<div class="listings_container main_body">
   <% @all_spaces.each do |space| %>
-    <div class="space_container">
+    <div class="space_container item_container">
       <div class="space_info">
         <div class="space_header">
           <b><%= space.name %></b>

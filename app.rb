@@ -8,6 +8,8 @@ class Hotel < Sinatra::Base
 enable :sessions, :method_override
 
   get '/' do
+    @user_id = session[:user_id]
+    @username = session[:username]
     erb :index
   end
 
@@ -20,32 +22,39 @@ enable :sessions, :method_override
   # future work - how to relate space to owner (user_id).
   # requesting to book, and confirmation, need to wait until spaces and users are linked.
 
-
   get '/spaces' do
     @all_spaces = Space.all
-    puts @all
+    @user_id = session[:user_id]
+    puts "spaces session = #{session[:user_id]}"
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
+    @user_id = session[:user_id]
+    @user_id == nil ? @disabled = "disabled" : @disabled = nil
+    # puts "user_ID: ", @user_id
     erb :'spaces/create_space_form'
   end
 
   post '/create_space' do
-    session['user_id'] = 1234
-    Space.create(name: params[:Name], description: params[:Description], user_id: session['user_id'] , price: params[:Price])
+    Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price])
     redirect '/spaces'
   end
 
   get '/user/new' do
+    @params = params
     # link to take user to the registration page user/create_user
     erb :'user/create_user_form'
   end
 
   post '/user/create_user' do
     newuser = User.create(username: params[:username], email: params[:email], password: params[:password])
-    session[:username] = newuser.username
-    redirect '/user/confirmation'
+    if newuser[0] == true
+      session[:username] = newuser[1].username
+      redirect '/user/confirmation'
+    else
+      redirect "user/new?error=#{newuser[1]}"
+    end
   end
 
   get '/user/confirmation' do
@@ -54,7 +63,28 @@ enable :sessions, :method_override
     erb :'user/confirmation'
   end
 
+  get '/user/login' do
+    @params = params
+    erb :'user/login'
+  end
 
+  post '/user/login_attempt' do
+    user = User.login(email: params[:email], password: params[:password])
+    if user[0] == true
+      # p "login attempt visibility"
+      # p user
+      session[:user_id] = user[1].id
+      session[:username] = user[1].username
+      redirect '/'
+    else
+      redirect "user/login?error=#{user[1]}"
+    end
+  end
 
+  get '/user/logout' do
+    session[:user_id] = nil
+    session[:username] = nil
+    redirect '/'
+  end
 
 end

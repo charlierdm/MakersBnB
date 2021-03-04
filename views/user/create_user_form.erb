@@ -1,3 +1,7 @@
+<% if @params["error"] != nil %>
+  <%= @params["error"] %>
+<% end %>
+
 <form action='/user/create_user' method='post'>
   <input type="text" name="username" placeholder="username">
   <input type="email" name="email" placeholder="email@example.com">
