@@ -50,7 +50,6 @@ class << self
     end
   end
 
-
   private
 
     def make_connection
