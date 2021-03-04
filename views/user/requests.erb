@@ -15,8 +15,8 @@
 </div>
 
 <div class="requests_container main_body">
-  <div class="requests_made_container">
-    <div class="item_container">
+  <div class="requests_made_container show_requests_container">
+    <div class="item_container request_header">
       <h2>Spaces I'm trying to book</h2>
     </div>
     <% if not @requests_made.empty? %>
@@ -30,19 +30,20 @@
               <p><%= booking.date %></p>
             </div>
             <div class="status_container">
-            <span>Status: <%= booking.booking_status %> </span>
+              <span>Status: <%= booking.booking_status %> </span>
+            </div>
           </div>
         </div>
       <% end %>
     <% else %>
       <div class="space_container item_container">
-        No booking requests found
+        <span class="no_requests">No booking requests found</span>
       </div>
     <% end %>
   </div>
 
-  <div class="requests_received_container">
-    <div class="item_container">
+  <div class="requests_received_container show_requests_container">
+    <div class="item_container request_header">
       <h2>Booking Requests for Spaces I Own</h2>
     </div>
     <% if @requests_recieved != nil%>
@@ -63,7 +64,7 @@
       <% end %>
     <% else %>
       <div class="space_container item_container">
-        No booking requests found
+        <span class="no_requests">No booking requests found</span>
       </div>
     <% end %>
   </div>
