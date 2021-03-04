@@ -120,4 +120,11 @@ enable :sessions, :method_override
     p "requests_recived #{@requests_received}"
     erb :'user/requests'
   end
+
+  get '/user/request_pending/:id' do
+    @booking = Booking.find(id: params[:id])
+    session['id'] = params[:id]
+    @user_id = session[:user_id]
+    erb :'user/request_pending'
+  end
 end

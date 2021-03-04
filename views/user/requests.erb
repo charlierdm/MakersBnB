@@ -23,6 +23,7 @@
 </div>
 
 <div class="listings_container main_body">
+  Requests Made
   <% @requests_made.each do |booking| %>
     <div class="space_container item_container">
       <div class="space_info">
@@ -47,6 +48,11 @@
           <p><%= booking.date %></p>
         </div>
 
+      </div>
+      <div class="arrow_container">
+        <a href="/user/request_pending/<%= booking.id %>">
+          <img src="images/right arrow.png">
+        </a>
       </div>
     </div>
   <% end %>
