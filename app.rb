@@ -8,9 +8,14 @@ require './lib/booking.rb'
 class Hotel < Sinatra::Base
 enable :sessions, :method_override
 
-  get '/' do
-    @user_id = session[:user_id]
+  before do
     @username = session[:username]
+    @user_id = session[:user_id]
+  end
+
+  get '/' do
+    # @user_id = session[:user_id]
+    # @username = session[:username]
     erb :index
   end
 
@@ -25,26 +30,28 @@ enable :sessions, :method_override
 
   get '/spaces' do
     @all_spaces = Space.all
-    @user_id = session[:user_id]
+    # @user_id = session[:user_id]
     puts "spaces session = #{session[:user_id]}"
     erb :'spaces/listings'
   end
 
   get '/spaces/new' do
-    @user_id = session[:user_id]
+    # @user_id = session[:user_id]
     @user_id == nil ? @disabled = "disabled" : @disabled = nil
     # puts "user_ID: ", @user_id
     erb :'spaces/create_space_form'
   end
 
   post '/create_space' do
-    Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price])
+    Space.create(name: params[:Name], description: params[:Description], user_id: session[:user_id] , price: params[:Price], available_from: params[:available_from], available_to: params[:available_to])
     redirect '/spaces'
   end
 
   get '/spaces/space/:id' do
     @space = Space.find(id: params[:id])
     session['id'] = params[:id]
+    @user_id = session[:user_id]
+    @unavailable_dates = Booking.find_unavailable(id: params[:id])
     erb :'spaces/space'
   end
 
@@ -76,7 +83,7 @@ enable :sessions, :method_override
 
   get '/user/confirmation' do
     # display confirmation of registration
-    @username = session[:username]
+    # @username = session[:username]
     erb :'user/confirmation'
   end
 

@@ -16,7 +16,7 @@ describe Space do
 
   describe ".create" do
     it 'creates a new space' do
-      result = Space.create(name: 'Schrute Farms', description: 'Despite what a Mr. Gareth Keenan may have indicated in his review, Schrute Farms is a safe destination for all travelers!', user_id: 1234, price: '57')
+      result = Space.create(name: 'Schrute Farms', description: 'Despite what a Mr. Gareth Keenan may have indicated in his review, Schrute Farms is a safe destination for all travelers!', user_id: 1234, price: '57', available_from: 'Today', available_to: 'Tomorrow')
       expect(result.name).to eq 'Schrute Farms'
       expect(result.description).to eq 'Despite what a Mr. Gareth Keenan may have indicated in his review, Schrute Farms is a safe destination for all travelers!'
       expect(result.price).to eq '57'
@@ -25,7 +25,7 @@ describe Space do
 
   describe '.find' do
     it 'finds a specific space'
-      
+
 
   end
 
