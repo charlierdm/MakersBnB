@@ -25,8 +25,7 @@ class << self
   end
 
   def check_available(space_id:, date:)
-    connection = make_connection()
-    result = connection.exec("SELECT * FROM bookings WHERE space_id = '#{space_id}' AND date = '#{date}' AND available = '#{0}'")
+    result = Connection.exec("SELECT * FROM bookings WHERE space_id = '#{space_id}' AND date = '#{date}' AND available = '#{0}'")
     result.any?
   end
 
@@ -63,6 +62,6 @@ class << self
         Booking.new(id: bookings['id'], space_id: bookings['space_id'], user_id: bookings['user_id'], date: bookings['date'], booking_status: bookings['booking_status'], available: bookings['available'])
       end
     end
-  
+
   end
 end

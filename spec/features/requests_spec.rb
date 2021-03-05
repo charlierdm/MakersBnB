@@ -28,7 +28,6 @@ feature "Requests Page:" do
     fill_in :password, with: @user_2[1].password
     click_button ('Login')
     visit '/user/requests'
-
     expect(page).to have_content("#{@space.name}")
     expect(page).to have_content("#{@booking.booking_status}")
   end
