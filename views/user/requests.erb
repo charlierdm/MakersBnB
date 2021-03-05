@@ -34,7 +34,11 @@
               <span>Status: <%= booking.booking_status %> </span>
             </div>
           </div>
-
+          <div class="arrow_container">
+            <a href="/user/request_pending/<%= booking.id %>">
+              <img src="images/right arrow.png">
+            </a>
+          </div>
         </div>
       <% end %>
     <% else %>
@@ -62,17 +66,18 @@
               <span>Status:<%= booking.booking_status %> </span>
             </div>
           </div>
+          <div class="arrow_container">
+            <a href="/user/request_pending/<%= booking.id %>">
+              <img src="images/right arrow.png">
+            </a>
+          </div>
         </div>
       <% end %>
     <% else %>
       <div class="space_container item_container">
         <span class="no_requests">No booking requests found</span>
       </div>
-      <div class="arrow_container">
-        <a href="/user/request_pending/<%= booking.id %>">
-          <img src="images/right arrow.png">
-        </a>
-      </div>
+      
     </div>
   <% end %>
 
