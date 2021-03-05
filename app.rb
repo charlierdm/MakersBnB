@@ -56,8 +56,18 @@ enable :sessions, :method_override
   end
 
   post '/bookings/create_booking' do
-    booking = Booking.create(space_id: session['id'], user_id: session['user_id'], date: params[:choose_date], booking_status: "pending", available: "1")
-    redirect '/bookings/confirmation'
+    check = Booking.check_available(space_id: session['id'], date: params[:choose_date])
+    if check == true
+      redirect '/bookings/denied'
+    else
+      booking = Booking.create(space_id: session['id'], user_id: session['user_id'], date: params[:choose_date], booking_status: "pending", available: "1")
+      redirect '/bookings/confirmation'
+    end
+  end
+
+  get '/bookings/denied' do
+    @space = Space.find(id: session['id'])
+    erb :'bookings/denied'
   end
 
   get '/bookings/confirmation' do

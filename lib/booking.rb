@@ -34,6 +34,15 @@ class << self
   end
 
 
+  def check_available(space_id:, date:)
+    connection = make_connection()
+    result = connection.exec("SELECT * FROM bookings WHERE space_id = '#{space_id}' AND date = '#{date}' AND available = '#{0}'")
+    result.any?
+  end
+
+    # if result is empty, then space is available, therefore create booking.
+    # if results has something in it, space is unavailable, therefore don't create Booking.new
+
   def find_requests_made(user_id:)
     connection = make_connection()
     result = connection.exec("SELECT * FROM bookings WHERE user_id='#{user_id.to_i}' ;")
@@ -51,7 +60,7 @@ class << self
       Booking.new(id: booking['id'], space_id: booking['space_id'], user_id: booking['user_id'], date: booking['date'], booking_status: booking['booking_status'], available: booking['available'])
     end
   end
-  
+
   def find_unavailable(space_id:)
     connection = make_connection()
     result = connection.exec("SELECT * FROM bookings WHERE space_id = '#{space_id}' AND available = '#{0}';")
