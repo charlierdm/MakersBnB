@@ -8,7 +8,7 @@ Clone this repo to your computer
 bundle install
 ```
 ```
-Make sure you have Postgres installed, and open the db/migrations folder.  
+Make sure you have Postgres installed, and open the db/migrations folder in this project.  
 ```
 ```
 Create a new database with the required tables by making use of the SQL queries here.
