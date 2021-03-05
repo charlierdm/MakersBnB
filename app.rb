@@ -52,13 +52,15 @@ enable :sessions, :method_override
     session['id'] = params[:id]
     @user_id = session[:user_id]
     @unavailable_dates = Booking.find_unavailable(space_id: params[:id])
+
     erb :'spaces/space'
   end
 
   post '/bookings/create_booking' do
     booking = Booking.create(space_id: session['id'], user_id: session['user_id'], date: params[:choose_date], booking_status: "pending", available: "1")
-    p booking
-    redirect '/bookings/confirmation'
+    unavailable_dates = Booking.find_unavailable(space_id: params[:id])
+
+
   end
 
   get '/bookings/confirmation' do
