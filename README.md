@@ -1,5 +1,28 @@
-# MakersBNB
+# MakersBNB #
+
+## How to use this project ##
+```
+Clone this repo to your computer
+```
+```
+bundle install
+```
+```
+Make sure you have Postgres installed, and open the db/migrations folder. Create a new database with the required tables by making use of the SQL queries here.  Do the same thing for a test database.
+```
+```
+Initiate the app by running 'rackup' in your terminal, and then navigating to your localhost page in a browser
+```
+
+## Individual goals ##
+The team started the challenge by setting personal goals. Some of these were met, some were not.  Reflection was only carried out once in the week, when reminded.  
+
 <img width="754" alt="Screenshot 2021-03-05 at 14 03 30" src="https://user-images.githubusercontent.com/75983723/110125769-9a89a380-7dbb-11eb-8444-ce5a02c22eea.png">
+
+
+## Project Management ##
+
+The team used Trello to list the project specifications and subsequent user stories.  This was also where 'tickets' got listed and delegated.
 
 <img width="1436" alt="Screenshot 2021-03-05 at 13 55 58" src="https://user-images.githubusercontent.com/75983723/110124883-8ee9ad00-7dba-11eb-8a78-ecef641627d3.png">
 
@@ -31,7 +54,8 @@ A ‘chat’ functionality once a space has been booked, allowing users whose sp
 Basic payment implementation though Stripe.
 ```
 ## User Stories
-
+On day 1, the team created several user stories from the main specifications.  
+Example:
 ```
 As a registered user,
 So that I can rent out my space,
