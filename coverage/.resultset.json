@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/bookings_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/bookings_spec.rb": {
         "lines": [
           1,
           null,
@@ -19,7 +19,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/create_space_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/create_space_spec.rb": {
         "lines": [
           1,
           1,
@@ -67,7 +67,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/create_user_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/create_user_spec.rb": {
         "lines": [
           1,
           1,
@@ -138,7 +138,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/header_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/header_spec.rb": {
         "lines": [
           1,
           1,
@@ -210,7 +210,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/homepage_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/homepage_spec.rb": {
         "lines": [
           1,
           1,
@@ -229,7 +229,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/listings_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/listings_spec.rb": {
         "lines": [
           1,
           1,
@@ -242,7 +242,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/login_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/login_spec.rb": {
         "lines": [
           1,
           null,
@@ -297,7 +297,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/features/requests_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/features/requests_spec.rb": {
         "lines": [
           null,
           1,
@@ -329,24 +329,24 @@
           1,
           1,
           1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
           null,
           1,
           0,
-          null,
-          null,
-          1,
-          null,
-          null,
-          null,
-          1,
-          0,
           0,
           0,
           null,
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/unit/booking_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/unit/booking_spec.rb": {
         "lines": [
           1,
           null,
@@ -402,7 +402,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/unit/space_class_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/unit/space_class_spec.rb": {
         "lines": [
           1,
           null,
@@ -439,7 +439,7 @@
           null
         ]
       },
-      "/Users/jackgumoes/Makers/week5/MakersBnB/spec/unit/user_spec.rb": {
+      "/Users/nico/Desktop/Makers/Projects/MakersBnB/spec/unit/user_spec.rb": {
         "lines": [
           1,
           null,
@@ -522,6 +522,6 @@
         ]
       }
     },
-    "timestamp": 1614940038
+    "timestamp": 1614941348
   }
 }

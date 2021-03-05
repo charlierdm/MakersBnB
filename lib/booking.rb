@@ -21,12 +21,10 @@ class Booking
 class << self
 
   def find(id:)
-    connection = make_connection()
-    result = connection.exec("SELECT * FROM bookings WHERE id = #{id};")
-    connection.close()
+    result = Connection.exec("SELECT * FROM bookings WHERE id = #{id};")
     Booking.new(id: result[0]['id'], space_id: result[0]['space_id'], user_id: result[0]['user_id'], date: result[0]['date'], booking_status: result[0]['booking_status'], available: result[0]['available'])
   end
-  
+
     def create(space_id:, user_id:, date:, booking_status:, available:)
       result = Connection.exec("INSERT INTO bookings (space_id, user_id, date, booking_status, available) VALUES('#{space_id}', '#{user_id}', '#{date}', '#{booking_status}', '#{available}') RETURNING *;")
       Booking.new(id: result[0]['id'], space_id: result[0]['space_id'], user_id: result[0]['user_id'], date: result[0]['date'], booking_status: result[0]['booking_status'], available: result[0]['available'])
