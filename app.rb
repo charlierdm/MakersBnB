@@ -51,7 +51,7 @@ enable :sessions, :method_override
     @space = Space.find(id: params[:id])
     session['id'] = params[:id]
     @user_id = session[:user_id]
-    @unavailable_dates = Booking.find_unavailable(space_id: params[:id])
+    @unavailable_dates = Booking.find_unavailable(space_id: session['id'])[0].date
     erb :'spaces/space'
   end
 
