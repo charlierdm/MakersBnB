@@ -38,10 +38,10 @@ Create Booking for <%= @space.name %>
 
 <br><br>
 
-# Coming back to this to finish
 
-<%= @unavailable_dates.each do |booking| %>
- <%= booking.date %>
+<h3><em>The following dates are unavailable, please select an available night</em></h3>
+<% @unavailable_dates.each do |booking| %>
+ <ul> <%= booking.date %> </ul><br>
 <% end %>
 
 
