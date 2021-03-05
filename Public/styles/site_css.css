@@ -102,3 +102,29 @@ body { background: #f5e5e0;}
   .submit_CreateListing{ align-items: center;}
   input{margin-top:3px}
   .CreateListing_form{position: relative;}
+
+/* show requests css */
+
+  .requests_container {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .requests_container .request_header { /* this applies only to the header boxes*/
+    text-align: center;
+    max-height: 95%;
+    flex-grow: 1;
+    height: 95px;
+  }
+  
+  .requests_container .item_container { height: 115px;}
+
+  .show_requests_container {
+    display: inline-block;
+    flex-grow: 1;
+    max-width: 45%;
+    align-items: stretch;
+  }
+
+  span.no_requests{margin: auto;} /* only applies to a span with class no_requests */
+

@@ -14,3 +14,4 @@ gem "rake", "~> 13.0"
 gem "bcrypt", "~> 3.1"
 gem "rubocop", "~> 1.11"
 gem "simplecov", "~> 0.21.2", require: false
+gem 'simplecov-console', require: false

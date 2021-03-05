@@ -9,7 +9,7 @@
     scenario "has requests & confirmations button when logged in" do
       create_user()
       login_user()
-      expect(page).to have_button("Requests")
+      expect(page).to have_link("Requests")
     end
 
   end
