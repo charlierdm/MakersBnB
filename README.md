@@ -20,7 +20,7 @@ Do the same thing for a test database.
 Initiate the app by running 'rackup' in your terminal.
 ```
 ```
-Navigating to your localhost page in a browser.
+Navigate to your localhost page in a browser.
 ```
 
 ## Individual goals ##
