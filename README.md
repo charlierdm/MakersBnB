@@ -8,10 +8,19 @@ Clone this repo to your computer
 bundle install
 ```
 ```
-Make sure you have Postgres installed, and open the db/migrations folder. Create a new database with the required tables by making use of the SQL queries here.  Do the same thing for a test database.
+Make sure you have Postgres installed, and open the db/migrations folder.  
 ```
 ```
-Initiate the app by running 'rackup' in your terminal, and then navigating to your localhost page in a browser
+Create a new database with the required tables by making use of the SQL queries here.
+```
+```
+Do the same thing for a test database.
+```
+```
+Initiate the app by running 'rackup' in your terminal.
+```
+```
+Navigating to your localhost page in a browser.
 ```
 
 ## Individual goals ##
