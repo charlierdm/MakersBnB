@@ -37,6 +37,12 @@ class Space
       Space.new(id: result['id'], name: result['name'], description: result['description'], user_id: result['user_id'], price: result['price'], available_from: result['available_from'], available_to: result['available_to'])
     end
 
+    def find_request(id:)
+      connection = make_connection()
+      results = connection.exec("SELECT spaces.id, spaces.name, spaces.description, spaces.user_id, spaces.price, spaces.available_from, spaces.available_to FROM spaces INNER JOIN bookings ON spaces.id = bookings.space_id WHERE spaces.id = '#{id}';")[0]
+      Space.new(id: results['id'], name: results['name'], description: results['description'], user_id: results['user_id'], price: results['price'], available_from: results['available_from'], available_to: results['available_to'])
+    end
+
     private
 
     def make_connection

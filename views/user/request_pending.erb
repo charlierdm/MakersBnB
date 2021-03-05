@@ -8,7 +8,13 @@
 
 <body>
 
-Confirm or deny pending request for Booking ID <%= @booking.id%>
+Confirm or deny pending request for Booking of <%= @space_requested.name%>
+<br><br>
+Description: <%= @space_requested.description %>
+<br><br>
+Price: £<%= @space_requested.price %>
+<br><br>
+the booking is for <%= @booking.date %>
 
 <br><br>
 Currently the status is:

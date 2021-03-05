@@ -123,6 +123,7 @@ enable :sessions, :method_override
 
   get '/user/request_pending/:id' do
     @booking = Booking.find(id: params[:id])
+    @space_requested = Space.find_request(id: params[:id])
     session['id'] = params[:id]
     @user_id = session[:user_id]
     erb :'user/request_pending'
