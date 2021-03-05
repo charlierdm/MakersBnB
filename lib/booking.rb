@@ -26,7 +26,6 @@ class Booking
       Booking.new(id: result[0]['id'], space_id: result[0]['space_id'], user_id: result[0]['user_id'], date: result[0]['date'], booking_status: result[0]['booking_status'], available: result[0]['available'])
     end
 
-
     def find_requests_made(user_id:)
       result = Connection.exec("SELECT * FROM bookings WHERE user_id='#{user_id.to_i}' ;")
       result.map do |booking|
