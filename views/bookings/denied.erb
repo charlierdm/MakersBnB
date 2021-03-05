@@ -1,0 +1,6 @@
+<br>
+Sorry, <%= @space.name %> is already booked on that day.  Please choose an available date.
+<br><br>
+<form action="/spaces/space/<%= @space.id %>" method="get">
+  <input type="submit" value="Return to Booking page">
+</form>
