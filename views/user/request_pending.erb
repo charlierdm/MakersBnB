@@ -20,7 +20,15 @@ Currently the status is:
 <%= @booking.booking_status%>
 <br><br>
 
-
+<form action="/user/request_pending/confirm" method="post">
+  <input type="hidden" name="booking_id" value="<%=@booking.id%>">
+  <input type="submit" value="Confirm">
+</form>
+<br>
+<form action="/user/request_pending/deny" method="post">
+  <input type="hidden" name ="booking_id" value="<%=@booking.id%>">
+  <input type="submit" value="Deny">
+</form>
 <br><br>
 
 </body>

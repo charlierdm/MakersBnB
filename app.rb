@@ -129,4 +129,14 @@ enable :sessions, :method_override
     @user_id = session[:user_id]
     erb :'user/request_pending'
   end
+
+  post '/user/request_pending/confirm' do
+    Booking.confirm(id: params[:booking_id])
+    redirect '/user/requests'
+  end
+
+  post '/user/request_pending/deny' do
+    Booking.deny(id: params[:booking_id])
+    redirect '/user/requests'
+  end
 end
