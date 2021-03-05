@@ -28,7 +28,7 @@ Create Booking for <%= @space.name %>
   <input type="date" id="start" name="choose_date"
          value="<%= @space.available_from %>"
          min=<%= @space.available_from %> max=<%= @space.available_to %>>
-   <% if @user_id != nil %>
+   <% if @user_id != nil  %>
      <input type="submit" value="Book Space">
    <% else %>
      <input type="submit" value="Book Space" disabled>
